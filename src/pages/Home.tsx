@@ -14,7 +14,7 @@ import ProfileTwo from "../assets/images/profile2.png";
 import ProfileThree from "../assets/images/profile3.png";
 import Champion from "../assets/champion.svg";
 import Card from "../components/Card";
-import Check from "../assets/check.svg";
+import Check from "../assets/Check.svg";
 
 export default function Home() {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
