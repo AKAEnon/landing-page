@@ -93,7 +93,7 @@ export default function Home() {
                                 <li><a href="#solution">Soluções</a></li>
                                 <li><a href="#testimonials">Depoimentos</a></li>
                                 <li><a href="#pricing">Preços</a></li>
-                                <li><a href="#contact">Contato</a></li>
+                                <li><a href="#contato">Contato</a></li>
                             </ul>
                         </div>
 
@@ -280,9 +280,8 @@ export default function Home() {
                     </div>
                 </section>
             </section>
-            <section style={{ padding: "40px 20px", maxWidth: "400px", margin: "0 auto", textAlign: "center" }}>
+            <section id="contato" style={{ padding: "40px 20px", maxWidth: "400px", margin: "0 auto", textAlign: "center" }}>
                 <h2>Fale Conosco</h2>
-
                 <form onSubmit={handleSubmit}>
                     <div style={{ marginBottom: "10px" }}>
                         <input
