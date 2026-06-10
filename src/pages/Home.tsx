@@ -15,8 +15,28 @@ import ProfileThree from "../assets/images/profile3.png";
 import Champion from "../assets/champion.svg";
 import Card from "../components/Card";
 import Check from "../assets/Check.svg";
+import IconInsta from "../assets/insta.svg";
+import IconFace from "../assets/face.svg";
+import IconYT from "../assets/you.svg";
 
 export default function Home() {
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+    async function sendContactEmail() {
+        const response = await fetch("/api/send-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                email,
+                message
+            }),
+        });
+
+        if (!response.ok) {
+            const body = await response.json().catch(() => ({}));
+            throw new Error(body.error ?? "Erro ao enviar mensagem.");
+        }
+    }
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     useEffect(() => {
         const html = document.querySelector("html");
@@ -224,8 +244,87 @@ export default function Home() {
                     </div>
                 </section>
             </section>
+            <section style={{ padding: "40px 20px", maxWidth: "400px", margin: "0 auto", textAlign: "center" }}>
+                <h2>Fale Conosco</h2>
 
+                <div style={{ marginBottom: "10px" }}>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Digite seu e-mail"
+                        style={{ width: "100%", padding: "10px" }}
+                    />
+                </div>
+
+                <div style={{ marginBottom: "10px" }}>
+                    <textarea
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        placeholder="Digite sua mensagem"
+                        style={{ width: "100%", padding: "10px", height: "100px" }}
+                    />
+                </div>
+
+                <button
+                    onClick={() => {
+                        sendContactEmail()
+                            .then(() => alert("Mensagem enviada com sucesso!"))
+                            .catch((erro) => alert(erro.message));
+                    }}
+                    style={{ padding: "10px 20px", cursor: "pointer" }}
+                >
+                    Enviar Mensagem
+                </button>
+            </section>
+            <footer className="footer-container">
+                <div className="footer-grid">
+
+                    <div className="footer-brand">
+                        <h3>Dona Frost</h3>
+                        <p>Comida de verdade, congelada com amor para facilitar o seu dia a dia.</p>
+                        <div className="footer-socials">
+                            <img src={IconInsta} alt="Instagram" width={24} height={24} />
+                            <img src={IconFace} alt="Facebook" width={24} height={24} />
+                            <img src={IconYT} alt="YouTube" width={24} height={24} />
+                        </div>
+                    </div>
+
+                    <div className="footer-column">
+                        <h4>A Empresa</h4>
+                        <ul className="footer-links">
+                            <li>Sobre nós</li>
+                            <li>Trabalhe Conosco</li>
+                            <li>Blog de Saúde</li>
+                        </ul>
+                    </div>
+
+                    <div className="footer-column">
+                        <h4>Nossos Serviços</h4>
+                        <ul className="footer-links">
+                            <li>Cardápio da Semana</li>
+                            <li>Planos de Assinatura</li>
+                            <li>Zonas de Entrega</li>
+                        </ul>
+                    </div>
+
+                    <div className="footer-column">
+                        <h4>Suporte</h4>
+                        <ul className="footer-links">
+                            <li>Como aquecer</li>
+                            <li>Tabela Nutricional</li>
+                            <li>Dúvidas Frequentes</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div className="footer-bottom">
+                    <p>Feito com dor durante a madrugada AJUDA AJUDA AJUDA</p>
+                    <p>©2026 PAINTECH - Todos os direitos reservados.</p>
+                </div>
+
+            </footer>
         </>
-
     );
 }
