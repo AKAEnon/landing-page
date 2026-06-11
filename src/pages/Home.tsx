@@ -202,17 +202,17 @@ export default function Home() {
 
                         <TestimonialCard
                             image={Profile}
-                            testimony="Certamente o mercado chinês de eletricos está bombando, só existe uma coisa melhor do que isso, provar uma boa comida DonaFrost no almoço."
-                            name="Ellon Ma"
-                            role="CEO BING CHILLING"
+                            testimony="Melhor que toda liberdade do mundo, é provar uma boa comida DonaFrost no almoço."
+                            name="Sunny"
+                            role="Assassino"
                             rating={4}
                         />
 
                         <TestimonialCard
                             image={ProfileTwo}
-                            testimony="Depois que comecei a comer os pratos da DonaFrost, economizei tempo e finalmente consegui manter a dieta no dia a dia. Comida maravilhosa!"
-                            name="Ryan Gosling"
-                            role="Agrônomo"
+                            testimony="Dona Frost é o novo pathway, eu fui um Tolo mesmo, deveria ter seguido o caminho Dona Frost!"
+                            name="Klein Moretti"
+                            role="Seer"
                             rating={4}
                         />
 
