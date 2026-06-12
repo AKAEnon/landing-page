@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ContactForm } from "../components/ContactForm";
 import TestimonialCard from "../components/TestimonialCard";
+import LoginTest from "../components/LoginTest"
 import Logo from "../assets/logo.svg";
 import Menu from "../assets/hamburguer.svg";
 import Close from "../assets/close.svg";
@@ -21,6 +22,7 @@ import IconFace from "../assets/face.svg";
 import IconYT from "../assets/you.svg";
 
 export default function Home() {
+
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     useEffect(() => {
         const html = document.querySelector("html");
@@ -229,6 +231,8 @@ export default function Home() {
                 </section>
             </section>
             <ContactForm />
+
+            <LoginTest />
             <footer className="footer-container">
                 <div className="footer-grid">
 
