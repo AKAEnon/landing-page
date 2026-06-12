@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
+import { useEffect, useState } from "react";
+import { ContactForm } from "../components/ContactForm";
 import TestimonialCard from "../components/TestimonialCard";
 import Logo from "../assets/logo.svg";
 import Menu from "../assets/hamburguer.svg";
@@ -21,58 +21,6 @@ import IconFace from "../assets/face.svg";
 import IconYT from "../assets/you.svg";
 
 export default function Home() {
-    const [email, setEmail] = useState("");
-    function handleCompleteChallenge(token: string | null) {
-        if (!token) {
-            setChallengeCompleted(false);
-            return;
-        }
-        setChallengeCompleted(true);
-    }
-
-    function isValidForm() {
-        const isValidFields = email.trim() !== "" && message.trim() !== "";
-        return isValidFields && isChallengeCompleted;
-    }
-
-    async function handleSubmit(e: React.FormEvent) {
-        e.preventDefault();
-        if (!isValidForm()) {
-            alert("Por favor, preencha todos os campos e marque a caixa 'Eu não sou um robô'.");
-            return;
-        }
-
-        try {
-            await sendContactEmail();
-
-            alert("Mensagem enviada com sucesso!");
-            setEmail("");
-            setMessage("");
-            setChallengeCompleted(false);
-            recaptchaRef.current?.reset();
-
-        } catch (erro: any) {
-            alert(erro.message || "Erro ao enviar a mensagem.");
-        }
-    }
-    const [message, setMessage] = useState("");
-    const [isChallengeCompleted, setChallengeCompleted] = useState(false);
-    const recaptchaRef = useRef<ReCAPTCHA>(null);
-    async function sendContactEmail() {
-        const response = await fetch("/api/send-email", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                email,
-                message
-            }),
-        });
-
-        if (!response.ok) {
-            const body = await response.json().catch(() => ({}));
-            throw new Error(body.error ?? "Erro ao enviar mensagem.");
-        }
-    }
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     useEffect(() => {
         const html = document.querySelector("html");
@@ -280,46 +228,7 @@ export default function Home() {
                     </div>
                 </section>
             </section>
-            <section id="contato" style={{ padding: "40px 20px", maxWidth: "400px", margin: "0 auto", textAlign: "center" }}>
-                <h2>Fale Conosco</h2>
-                <form onSubmit={handleSubmit}>
-                    <div style={{ marginBottom: "10px" }}>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Digite seu e-mail"
-                            style={{ width: "100%", padding: "10px" }}
-                            required
-                        />
-                    </div>
-
-                    <div style={{ marginBottom: "10px" }}>
-                        <textarea
-                            value={message}
-                            onChange={(e) => setMessage(e.target.value)}
-                            placeholder="Digite sua mensagem"
-                            style={{ width: "100%", padding: "10px", height: "100px" }}
-                            required
-                        />
-                    </div>
-
-                    <div style={{ marginBottom: "15px", display: "flex", justifyContent: "center" }}>
-                        <ReCAPTCHA
-                            ref={recaptchaRef}
-                            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                            onChange={handleCompleteChallenge}
-                        />
-                    </div>
-
-                    <button
-                        type="submit"
-                        style={{ padding: "10px 20px", cursor: "pointer", width: "100%" }}
-                    >
-                        Enviar Mensagem
-                    </button>
-                </form>
-            </section>
+            <ContactForm />
             <footer className="footer-container">
                 <div className="footer-grid">
 
