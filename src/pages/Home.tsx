@@ -65,7 +65,7 @@ export default function Home() {
                                             <li> <a onClick={() => setShowMobileMenu(!showMobileMenu)} href="#solution">Soluções</a> </li>
                                             <li> <a onClick={() => setShowMobileMenu(!showMobileMenu)} href="#testimonials">Depoimentos</a> </li>
                                             <li> <a onClick={() => setShowMobileMenu(!showMobileMenu)} href="#pricing">Preços</a> </li>
-                                            <li> <a onClick={() => setShowMobileMenu(!showMobileMenu)} href="#contact">Contato</a> </li>
+                                            <li> <a onClick={() => setShowMobileMenu(!showMobileMenu)} href="#contato">Contato</a> </li>
                                             <li><a onClick={() => setShowMobileMenu(!showMobileMenu)} className="reverse-color" href="#">Login</a></li>
                                         </ul>
                                         <span onClick={() => setShowMobileMenu(!showMobileMenu)} className="btn-wrapper">
